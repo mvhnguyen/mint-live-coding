@@ -6,9 +6,9 @@
     <title>MiNT Sprint 2.0 - Smart Protocol Scorer</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans p-4 md:p-6">
+<body class="bg-slate-50 text-slate-800 font-sans p-3 md:p-4">
 
-    <div class="max-w-7xl mx-auto bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+    <div class="max-w-7xl mx-auto bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-slate-200">
         
         <!-- INITIAL SETUP SCREEN -->
         <div id="setupScreen" class="py-12 px-4 max-w-lg mx-auto text-center space-y-6">
@@ -37,74 +37,74 @@
         </div>
 
         <!-- MAIN SCORING INTERFACE -->
-        <div id="scoringInterface" class="hidden space-y-6">
+        <div id="scoringInterface" class="hidden space-y-4">
             <!-- Header & Subject Info -->
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b pb-4 gap-4">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b pb-3 gap-2">
                 <div>
-                    <h1 class="text-2xl font-bold text-slate-900">MiNT Session Active</h1>
-                    <p id="sessionMetaText" class="text-sm text-slate-500"></p>
+                    <h1 class="text-xl font-bold text-slate-900">MiNT Session Active</h1>
+                    <p id="sessionMetaText" class="text-xs text-slate-500"></p>
                 </div>
-                <button onclick="returnToSetup()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 px-3 py-1.5 rounded-lg border transition">⚙️ Change Subject / Reset</button>
+                <button onclick="returnToSetup()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-600 px-2.5 py-1 rounded-lg border transition">⚙️ Reset / Change Subject</button>
             </div>
 
             <!-- Timer & Phase Control Panel -->
-            <div class="bg-slate-100 border border-slate-200 p-4 rounded-xl flex flex-wrap items-center justify-between gap-4 sticky top-4 z-20 shadow-md">
-                <div class="flex items-center gap-4">
+            <div class="bg-slate-100 border border-slate-200 p-3 rounded-xl flex flex-wrap items-center justify-between gap-3 sticky top-2 z-20 shadow-md">
+                <div class="flex items-center gap-3">
                     <div>
-                        <span class="block text-xs font-bold uppercase text-slate-500">Active Block & Phase</span>
-                        <span id="phaseDisplay" class="text-lg font-bold text-blue-600">Block: Ready</span>
+                        <span class="block text-[10px] font-bold uppercase text-slate-500">Active Block & Phase</span>
+                        <span id="phaseDisplay" class="text-base font-bold text-blue-600">Block: Ready</span>
                     </div>
-                    <div class="border-l pl-4">
-                        <span id="timerLabel" class="block text-xs font-bold uppercase text-slate-500">Stopwatch (Cumulative)</span>
-                        <span id="timerDisplay" class="text-2xl font-mono font-bold text-slate-800">00:00</span>
+                    <div class="border-l pl-3">
+                        <span id="timerLabel" class="block text-[10px] font-bold uppercase text-slate-500">Stopwatch</span>
+                        <span id="timerDisplay" class="text-xl font-mono font-bold text-slate-800">00:00</span>
                     </div>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="startFirstPass()" id="btnStart1st" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">1. Start 1st Pass Stopwatch</button>
-                    <button onclick="finishFirstPass()" id="btnFinish1st" class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition hidden">2. Finish 1st Pass (Continue to 2nd)</button>
-                    <button onclick="finishSecondPass()" id="btnFinish2nd" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition hidden">3. Finish Block Review</button>
-                    <button onclick="proceedToNextBlock()" id="btnNextBlock" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition hidden">Proceed to Next Block ➔</button>
+                    <button onclick="startFirstPass()" id="btnStart1st" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition">1. Start 1st Pass Stopwatch</button>
+                    <button onclick="finishFirstPass()" id="btnFinish1st" class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition hidden">2. Finish 1st Pass (Continue)</button>
+                    <button onclick="finishSecondPass()" id="btnFinish2nd" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition hidden">3. Finish Block Review</button>
+                    <button onclick="proceedToNextBlock()" id="btnNextBlock" class="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition hidden">Proceed to Next Block ➔</button>
                 </div>
             </div>
 
-            <!-- DYNAMIC LOCALIZED RA SCRIPT CARD -->
-            <div id="scriptCard" class="bg-sky-50 border border-sky-200 p-4 rounded-xl space-y-2 text-sky-900">
+            <!-- COMPACT RA SCRIPT CARD -->
+            <div id="scriptCard" class="bg-sky-50 border border-sky-200 p-3 rounded-xl space-y-1.5 text-sky-900 text-xs">
                 <div class="flex justify-between items-center">
-                    <span class="text-xs font-bold uppercase tracking-wider text-sky-700" id="scriptCardTitle">📖 1st Pass Protocol Script (Read Aloud)</span>
+                    <span class="font-bold uppercase tracking-wider text-sky-700" id="scriptCardTitle">📖 1st Pass Protocol Script</span>
                 </div>
-                <div id="scriptCardBody" class="text-sm leading-relaxed space-y-1"></div>
+                <div id="scriptCardBody" class="leading-relaxed space-y-1"></div>
             </div>
 
-            <!-- Live Score Summary Bar -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 bg-blue-50/50 border border-blue-100 p-4 rounded-xl">
+            <!-- Compact Live Score Summary Bar -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 bg-blue-50/50 border border-blue-100 p-3 rounded-xl">
                 <div>
-                    <span class="block text-xs font-bold uppercase text-slate-500">1st Pass Correct</span>
-                    <span id="score1st" class="text-xl font-bold text-slate-800">80 / 80</span>
+                    <span class="block text-[10px] font-bold uppercase text-slate-500">1st Pass Correct</span>
+                    <span id="score1st" class="text-lg font-bold text-slate-800">80 / 80</span>
                 </div>
                 <div>
-                    <span class="block text-xs font-bold uppercase text-slate-500">2nd Pass Got</span>
-                    <span id="score2nd" class="text-xl font-bold text-slate-800">0</span>
+                    <span class="block text-[10px] font-bold uppercase text-slate-500">2nd Pass Got</span>
+                    <span id="score2nd" class="text-lg font-bold text-slate-800">0</span>
                 </div>
                 <div>
-                    <span class="block text-xs font-bold uppercase text-slate-500">Total Correct (1st + 2nd)</span>
-                    <span id="scoreTotal" class="text-xl font-bold text-blue-700">80 / 80</span>
+                    <span class="block text-[10px] font-bold uppercase text-slate-500">Total Correct</span>
+                    <span id="scoreTotal" class="text-lg font-bold text-blue-700">80 / 80</span>
                 </div>
                 <div>
-                    <span class="block text-xs font-bold uppercase text-slate-500">Efficiency (Items / Sec)</span>
-                    <span id="scoreEfficiency" class="text-xl font-bold text-emerald-700">0.00</span>
+                    <span class="block text-[10px] font-bold uppercase text-slate-500">Efficiency (Items/Sec)</span>
+                    <span id="scoreEfficiency" class="text-lg font-bold text-emerald-700">0.00</span>
                 </div>
             </div>
 
-            <!-- Item Grid -->
+            <!-- Compact Item Grid -->
             <div>
-                <h2 id="gridTitle" class="text-lg font-semibold mb-3 text-slate-700">Task Grid</h2>
-                <div id="itemGrid" class="space-y-6"></div>
+                <h2 id="gridTitle" class="text-sm font-semibold mb-2 text-slate-700">Task Grid</h2>
+                <div id="itemGrid" class="space-y-2"></div>
             </div>
 
             <!-- Footer Export -->
-            <div class="border-t pt-4 flex justify-between items-center">
-                <span id="statusNote" class="text-xs text-slate-400">Complete both blocks to unlock export.</span>
-                <button onclick="exportMasterCSV()" id="btnExport" class="bg-slate-800 hover:bg-slate-900 text-white px-5 py-2 rounded-xl font-medium shadow-sm transition opacity-50 cursor-not-allowed" disabled>Export Master CSV (Both Blocks)</button>
+            <div class="border-t pt-3 flex justify-between items-center">
+                <span id="statusNote" class="text-[11px] text-slate-400">Complete both blocks to unlock export.</span>
+                <button onclick="exportMasterCSV()" id="btnExport" class="bg-slate-800 hover:bg-slate-900 text-white px-4 py-1.5 rounded-xl text-xs font-medium shadow-sm transition opacity-50 cursor-not-allowed" disabled>Export Master CSV</button>
             </div>
         </div>
     </div>
@@ -227,58 +227,39 @@
 
             if (lang === 'CHN') {
                 if (currentPhase === 'PRE' || currentPhase === 'PASS1') {
-                    card.className = "bg-sky-50 border border-sky-200 p-4 rounded-xl space-y-2 text-sky-900";
+                    card.className = "bg-sky-50 border border-sky-200 p-2.5 rounded-xl space-y-1 text-sky-900 text-xs";
                     titleEl.textContent = `📖 第一遍测试指导语 (Mandarin 1st Pass Script — 请朗读)`;
                     bodyEl.innerHTML = `
-                        <p><em>“我将向您展示 8 行图片。请从左上角开始，尽可能快地逐一用<span class="font-bold underline">中文</span>说出每个图片的名称，尽量不要出错。如果遇到您不知道或想不起来的图片，请说‘不知道’然后继续。如果过一会儿你想起来了，可以随时告诉我。你有3分钟的时间尽可能多地说出图片名称。”</em></p>
-                        <p class="text-xs text-sky-800 pt-1 border-t border-sky-200"><strong>主试操作 (RA Action):</strong> 展示测试卡片，指出起点，询问：<em>“请问您有什么问题吗？”</em>，然后说：<em>“现在可以开始。”</em> <strong>当参与者说出第一个词（“狗”）时启动计时器。不要在3分钟时强行叫停；让他们完成所有图片</strong>（若卡住超过3–4秒可温和提醒继续）。</p>
+                        <p><em>“我将向您展示 8 行图片。请从左上角开始，尽可能快地逐一用<span class="font-bold underline">中文</span>说出每个图片的名称，尽量不要出错。如果遇到您不知道或想不起来的图片，请说‘不知道’然后继续。你有3分钟的时间尽可能多地说出图片名称。”</em></p>
                     `;
                 } else if (currentPhase === 'PASS2') {
-                    card.className = "bg-amber-50 border border-amber-200 p-4 rounded-xl space-y-2 text-amber-900";
+                    card.className = "bg-amber-50 border border-amber-200 p-2.5 rounded-xl space-y-1 text-amber-900 text-xs";
                     titleEl.textContent = `📖 第二遍测试指导语及提示参考 (Mandarin 2nd Pass Script — 计时继续)`;
                     bodyEl.innerHTML = `
-                        <p><em>“现在我们来看看是否能想起刚才漏掉或没答对的图片。如果你还是不知道，就说‘不知道’，我们很快往下进行。我会指出一些你跳过或说得不够准确的物体，请告诉我如果你想起来了的话。”</em></p>
-                        <div class="text-xs space-y-1 pt-1 border-t border-amber-200 text-amber-900">
-                            <p>💡 <strong>整行/多图提示技巧:</strong> 若参与者漏掉了一整行或多个连续图片，请指向整片区域并统一提示：<em>“你能说出这里面任何一个的名字吗？”</em> 或 <em>“你能想起这一行里哪个物体的名字吗？”</em></p>
-                            <p>💡 <strong>常用追问提示参考:</strong></p>
-                            <ul class="list-disc pl-5">
-                                <li><em>不够准确/太笼统时:</em> "你能想出一个更具体或更准确的名称吗？"</li>
-                                <li><em>特定细节/箭头指向时:</em> "看看这里箭头指的是什么？你能说出它的名字吗？"</li>
-                            </ul>
-                        </div>
+                        <p><em>“现在我们来看看是否能想起刚才漏掉或没答对的图片。如果你还是不知道，就说‘不知道’，我们很快往下进行。”</em></p>
                     `;
                 } else {
-                    card.className = "bg-emerald-50 border border-emerald-200 p-4 rounded-xl space-y-2 text-emerald-900";
+                    card.className = "bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl space-y-1 text-emerald-900 text-xs";
                     titleEl.textContent = `✅ 中文测试模块 (Mandarin Block) 已完成`;
-                    bodyEl.innerHTML = `<p class="text-sm">本模块已记录完毕。请进入下一模块或导出数据。</p>`;
+                    bodyEl.innerHTML = `<p>本模块已记录完毕。请进入下一模块或导出数据。</p>`;
                 }
             } else {
                 if (currentPhase === 'PRE' || currentPhase === 'PASS1') {
-                    card.className = "bg-sky-50 border border-sky-200 p-4 rounded-xl space-y-2 text-sky-900";
+                    card.className = "bg-sky-50 border border-sky-200 p-2.5 rounded-xl space-y-1 text-sky-900 text-xs";
                     titleEl.textContent = `📖 1st Pass Protocol Script (English Read Aloud)`;
                     bodyEl.innerHTML = `
-                        <p><em>“I am going to show you 8 rows of pictures. Starting at the top left, try to name each picture in <span class="font-bold underline">ENGLISH</span> from first to last going as quickly as you can without making errors. If you come across one you don’t know—or can’t remember—say “DON’T KNOW” and keep going. If the name comes to mind later, you can go back and tell us. You will have 3 minutes to name as many pictures as you can.”</em></p>
-                        <p class="text-xs text-sky-800 pt-1 border-t border-sky-200"><strong>RA Action:</strong> Show card, point out start position, ask <em>"Do you have any questions?"</em>, then say <em>"You may begin."</em> <strong>Start stopwatch when they say "Dog". Do not stop at 3 min; let them finish all items</strong> (encourage gently if stuck >3–4s).</p>
+                        <p><em>“I am going to show you 8 rows of pictures. Starting at the top left, try to name each picture in <span class="font-bold underline">ENGLISH</span> as quickly as you can without making errors. Say “DON’T KNOW” if stuck. You have 3 minutes.”</em></p>
                     `;
                 } else if (currentPhase === 'PASS2') {
-                    card.className = "bg-amber-50 border border-amber-200 p-4 rounded-xl space-y-2 text-amber-900";
-                    titleEl.textContent = `📖 2nd Pass Protocol Script & Prompts Reference (English — Timer Continuing)`;
+                    card.className = "bg-amber-50 border border-amber-200 p-2.5 rounded-xl space-y-1 text-amber-900 text-xs";
+                    titleEl.textContent = `📖 2nd Pass Protocol Script (English — Timer Continuing)`;
                     bodyEl.innerHTML = `
-                        <p><em>“Now let’s see if we can get some of the ones you missed. If you still don’t know just say ‘don’t know’ and we’ll move on quickly. I’m going to point out some objects that you either skipped or weren’t quite right, please let me know if the name comes to mind.”</em></p>
-                        <div class="text-xs space-y-1 pt-1 border-t border-amber-200 text-amber-900">
-                            <p>💡 <strong>Multiple Misses Tip:</strong> If participant missed an entire row or group, point to them all at once and say: <em>“Can you name any from this row?”</em> or <em>“Can you think of a name for any of these?”</em></p>
-                            <p>💡 <strong>Item Prompt References:</strong></p>
-                            <ul class="list-disc pl-5">
-                                <li><em>Not Quite Right:</em> "Take a closer look at this one. Do you have a different name for that?"</li>
-                                <li><em>Too General:</em> "Do you have a more specific name?"</li>
-                                <li><em>Missed Arrow / Detail:</em> "See what the arrow is pointing at here. Do you have a name for that?"</li>
-                            </ul>
-                        </div>
+                        <p><em>“Now let’s see if we can get some of the ones you missed. If you still don’t know just say ‘don’t know’ and we’ll move on quickly.”</em></p>
                     `;
                 } else {
-                    card.className = "bg-emerald-50 border border-emerald-200 p-4 rounded-xl space-y-2 text-emerald-900";
+                    card.className = "bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl space-y-1 text-emerald-900 text-xs";
                     titleEl.textContent = `✅ English Block Completed`;
-                    bodyEl.innerHTML = `<p class="text-sm">Block scoring finished. Proceed to the next block or export session data below.</p>`;
+                    bodyEl.innerHTML = `<p>Block scoring finished. Proceed to the next block or export session data below.</p>`;
                 }
             }
         }
@@ -294,39 +275,38 @@
 
             for (let r = 1; r <= 8; r++) {
                 let rowDiv = document.createElement('div');
-                rowDiv.className = "border border-slate-200 rounded-xl p-3 bg-slate-50/50";
+                rowDiv.className = "border border-slate-200 rounded-lg p-2 bg-slate-50/50";
                 
                 let rowHeader = document.createElement('div');
-                rowHeader.className = "text-xs font-bold uppercase text-slate-500 mb-2 flex justify-between items-center";
-                rowHeader.innerHTML = `<span>Row ${r}</span> <button onclick="quickRow2ndPass(${r})" class="text-[10px] bg-slate-200 hover:bg-slate-300 px-2 py-0.5 rounded text-slate-700 font-normal">${lang === 'CHN' ? '整行 2nd Pass 标记' : 'Mark Row Misses 2nd Pass'}</button>`;
+                rowHeader.className = "text-[10px] font-bold uppercase text-slate-500 mb-1 flex justify-between items-center";
+                rowHeader.innerHTML = `<span>Row ${r}</span> <button onclick="quickRow2ndPass(${r})" class="text-[9px] bg-slate-200 hover:bg-slate-300 px-1.5 py-0.5 rounded text-slate-700 font-normal">${lang === 'CHN' ? '整行 2nd Pass 标记' : 'Mark Row 2nd Pass'}</button>`;
                 rowDiv.appendChild(rowHeader);
 
                 let gridCols = document.createElement('div');
-                gridCols.className = "grid grid-cols-2 sm:grid-cols-5 md:grid-cols-10 gap-2";
+                gridCols.className = "grid grid-cols-2 sm:grid-cols-5 md:grid-cols-10 gap-1.5";
 
                 let rowItems = items.filter(i => i.row === r);
                 rowItems.forEach(item => {
                     const s = states[item.id];
                     let displayText = lang === 'CHN' ? item.chn : item.eng;
-                    let cardClass = "border rounded-lg p-2.5 flex flex-col justify-between transition select-none text-xs ";
+                    let cardClass = "border rounded p-1.5 flex flex-col justify-between transition select-none text-[11px] ";
                     let badgeHTML = "";
 
                     if (s.correct1st) {
                         cardClass += "bg-white border-slate-200 hover:border-slate-300 text-slate-800";
-                        badgeHTML = `<span class="font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded self-start">${lang === 'CHN' ? '✓ 正确' : '✓ Correct'}</span>`;
+                        badgeHTML = `<span class="font-bold text-emerald-600 bg-emerald-50 px-1 rounded text-[9px] self-start">${lang === 'CHN' ? '✓' : '✓'}</span>`;
                     } else {
                         cardClass += "bg-rose-50 border-rose-300 text-rose-900";
-                        badgeHTML = `<span class="font-bold text-rose-600 bg-rose-100 px-1.5 py-0.5 rounded self-start">${lang === 'CHN' ? '✕ 漏答' : '✕ Missed'}</span>`;
+                        badgeHTML = `<span class="font-bold text-rose-600 bg-rose-100 px-1 rounded text-[9px] self-start">${lang === 'CHN' ? '✕' : '✕'}</span>`;
                     }
 
                     let secondPassHTML = "";
                     if (!s.correct1st && (currentPhase === 'PASS2' || currentPhase === 'BLOCK_DONE' || currentPhase === 'ALL_DONE')) {
                         secondPassHTML = `
-                            <div class="mt-2 pt-1 border-t border-rose-200 flex flex-col gap-1" onclick="event.stopPropagation()">
-                                <span class="font-semibold text-rose-800 text-[10px]">2nd Pass:</span>
+                            <div class="mt-1 pt-1 border-t border-rose-200 flex flex-col gap-0.5" onclick="event.stopPropagation()">
                                 <div class="flex gap-1 justify-between">
-                                    <button onclick="setSecondPass(${item.id}, 'GOT')" class="px-1.5 py-0.5 text-[10px] font-bold rounded flex-1 ${s.secondPassResult === 'GOT' ? 'bg-emerald-600 text-white' : 'bg-white border text-slate-700'}">GOT</button>
-                                    <button onclick="setSecondPass(${item.id}, 'DK')" class="px-1.5 py-0.5 text-[10px] font-bold rounded flex-1 ${s.secondPassResult === 'DK' ? 'bg-rose-600 text-white' : 'bg-white border text-slate-700'}">DK</button>
+                                    <button onclick="setSecondPass(${item.id}, 'GOT')" class="px-1 py-0.5 text-[9px] font-bold rounded flex-1 ${s.secondPassResult === 'GOT' ? 'bg-emerald-600 text-white' : 'bg-white border text-slate-700'}">GOT</button>
+                                    <button onclick="setSecondPass(${item.id}, 'DK')" class="px-1 py-0.5 text-[9px] font-bold rounded flex-1 ${s.secondPassResult === 'DK' ? 'bg-rose-600 text-white' : 'bg-white border text-slate-700'}">DK</button>
                                 </div>
                             </div>
                         `;
@@ -340,11 +320,11 @@
                     }
                     card.innerHTML = `
                         <div>
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-[10px] text-slate-400 font-mono">#${item.id}</span>
+                            <div class="flex justify-between items-center mb-0.5">
+                                <span class="text-[9px] text-slate-400 font-mono">#${item.id}</span>
                                 ${badgeHTML}
                             </div>
-                            <div class="font-bold text-sm leading-tight mt-1 truncate" title="${displayText}">${displayText}</div>
+                            <div class="font-bold leading-tight truncate" title="${displayText}">${displayText}</div>
                         </div>
                         ${secondPassHTML}
                     `;
@@ -389,7 +369,7 @@
             let lang = getCurrentLang();
             document.getElementById('timerLabel').textContent = "Cumulative Stopwatch";
             document.getElementById('phaseDisplay').textContent = `Block ${lang}: 1st Pass Running`;
-            document.getElementById('phaseDisplay').className = "text-lg font-bold text-amber-600";
+            document.getElementById('phaseDisplay').className = "text-base font-bold text-amber-600";
             document.getElementById('btnStart1st').classList.add('hidden');
             document.getElementById('btnFinish1st').classList.remove('hidden');
             document.getElementById('statusNote').textContent = lang === 'CHN' ? "计时器运行中（第1遍）。在说出‘狗’时起表。" : "Stopwatch running (1st Pass). Start timer on 'Dog'.";
@@ -407,11 +387,10 @@
             let totalElapsedSoFar = Math.max(1, Math.floor((Date.now() - startTime) / 1000));
             sessionData.blocks[sessionData.currentBlockIndex].duration1st = totalElapsedSoFar;
 
-            // Transition to 2nd Pass keeping timer running continuously
             currentPhase = 'PASS2';
             let lang = getCurrentLang();
             document.getElementById('phaseDisplay').textContent = `Block ${lang}: 2nd Pass Review (Timer Continuing)`;
-            document.getElementById('phaseDisplay').className = "text-lg font-bold text-emerald-600";
+            document.getElementById('phaseDisplay').className = "text-base font-bold text-emerald-600";
             document.getElementById('btnFinish1st').classList.add('hidden');
             document.getElementById('btnFinish2nd').classList.remove('hidden');
             document.getElementById('statusNote').textContent = lang === 'CHN' ? "第1遍耗时已记录。计时器继续累加用于2nd Pass与总时间计算。" : "1st pass split recorded. Timer continues running to capture total administration time.";
@@ -424,14 +403,13 @@
             let totalElapsedTime = Math.max(1, Math.floor((Date.now() - startTime) / 1000));
             let duration1st = sessionData.blocks[sessionData.currentBlockIndex].duration1st;
             
-            // 2nd pass duration is the difference between total elapsed time and 1st pass time
             let duration2nd = Math.max(0, totalElapsedTime - duration1st);
             sessionData.blocks[sessionData.currentBlockIndex].duration2nd = duration2nd;
 
             currentPhase = 'BLOCK_DONE';
             let lang = getCurrentLang();
             document.getElementById('phaseDisplay').textContent = `Block ${lang} Completed (Total: ${Math.floor(totalElapsedTime/60)}m ${totalElapsedTime%60}s)`;
-            document.getElementById('phaseDisplay').className = "text-lg font-bold text-slate-700";
+            document.getElementById('phaseDisplay').className = "text-base font-bold text-slate-700";
             document.getElementById('btnFinish2nd').classList.add('hidden');
 
             if (sessionData.currentBlockIndex === 1) {
@@ -462,7 +440,7 @@
             document.getElementById('timerLabel').textContent = "Stopwatch (Cumulative)";
             document.getElementById('timerDisplay').textContent = "00:00";
             document.getElementById('phaseDisplay').textContent = `Block ${lang}: Ready`;
-            document.getElementById('phaseDisplay').className = "text-lg font-bold text-blue-600";
+            document.getElementById('phaseDisplay').className = "text-base font-bold text-blue-600";
             document.getElementById('btnNextBlock').classList.add('hidden');
             document.getElementById('btnStart1st').classList.remove('hidden');
             document.getElementById('statusNote').textContent = `Ready for Block ${lang}. Press 'Start 1st Pass Stopwatch' when ready.`;
