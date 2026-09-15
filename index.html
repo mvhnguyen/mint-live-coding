@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="startFirstPass()" id="btnStart1st" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition">1. Start 1st Pass Stopwatch</button>
+                    <button onclick="startFirstPass()" id="btnStart1st" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition animate-pulse">1. Start 1st Pass Stopwatch</button>
                     <button onclick="finishFirstPass()" id="btnFinish1st" class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition hidden">2. Finish 1st Pass (Continue)</button>
                     <button onclick="finishSecondPass()" id="btnFinish2nd" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition hidden">3. Finish Block Review</button>
                     <button onclick="proceedToNextBlock()" id="btnNextBlock" class="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition hidden">Proceed to Next Block ➔</button>
@@ -362,7 +362,6 @@
                 tipEl.classList.add('hidden');
             }
 
-            // Snug 10-column layout with flexible height to show all word options
             let gridCols = document.createElement('div');
             gridCols.className = "grid grid-cols-2 sm:grid-cols-5 md:grid-cols-10 gap-1 bg-slate-100 p-1.5 rounded-xl border border-slate-200";
 
@@ -380,6 +379,11 @@
                     badgeHTML = `<span class="font-bold text-rose-600 bg-rose-100 px-0.5 rounded text-[9px] leading-none shrink-0">✕</span>`;
                 }
 
+                // Visual disabled state when timer is not running
+                if (currentPhase === 'PRE') {
+                    cardClass += " opacity-60 cursor-not-allowed";
+                }
+
                 let secondPassHTML = "";
                 if (!s.correct1st && (currentPhase === 'PASS2' || currentPhase === 'BLOCK_DONE' || currentPhase === 'ALL_DONE')) {
                     secondPassHTML = `
@@ -394,10 +398,17 @@
 
                 let card = document.createElement('div');
                 card.className = cardClass;
-                if (currentPhase === 'PASS1' || currentPhase === 'PRE') {
+
+                // Enforce timer check on card click
+                if (currentPhase === 'PASS1') {
                     card.classList.add('cursor-pointer');
                     card.onclick = () => toggleFirstPass(item.id);
+                } else if (currentPhase === 'PRE') {
+                    card.onclick = () => {
+                        alert("⏱️ Please click '1. Start 1st Pass Stopwatch' before marking items!");
+                    };
                 }
+
                 card.innerHTML = `
                     <div>
                         <div class="flex justify-between items-center mb-0.5 gap-0.5">
@@ -416,6 +427,7 @@
         }
 
         function toggleFirstPass(id) {
+            if (currentPhase !== 'PASS1') return;
             const states = getCurrentStates();
             states[id].correct1st = !states[id].correct1st;
             if (states[id].correct1st) {
@@ -440,6 +452,7 @@
             document.getElementById('phaseDisplay').textContent = `Block ${lang}: 1st Pass Running`;
             document.getElementById('phaseDisplay').className = "text-base font-bold text-amber-600";
             document.getElementById('btnStart1st').classList.add('hidden');
+            document.getElementById('btnStart1st').classList.remove('animate-pulse');
             document.getElementById('btnFinish1st').classList.remove('hidden');
             document.getElementById('statusNote').textContent = lang === 'CHN' ? "计时器运行中（第1遍）。在说出‘狗’时起表。" : "Stopwatch running (1st Pass). Start timer on 'Dog'.";
 
@@ -512,7 +525,8 @@
             document.getElementById('phaseDisplay').className = "text-base font-bold text-blue-600";
             document.getElementById('btnNextBlock').classList.add('hidden');
             document.getElementById('btnStart1st').classList.remove('hidden');
-            document.getElementById('statusNote').textContent = `Ready for Block ${lang}. Press 'Start 1st Pass Stopwatch' when ready.`;
+            document.getElementById('btnStart1st').classList.add('animate-pulse');
+            document.getElementById('statusNote').textContent = `⚠️ Timer locked. Click '1. Start 1st Pass Stopwatch' before scoring Block ${lang}.`;
             updateScriptCard();
         }
 
