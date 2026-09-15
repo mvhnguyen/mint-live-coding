@@ -101,7 +101,7 @@
                     <h2 id="gridTitle" class="text-xs font-bold uppercase text-slate-600">Task Grid</h2>
                     <span id="pass2QuickTip" class="text-[10px] text-slate-400 hidden">💡 Tap any incorrect card to toggle 2nd pass result</span>
                 </div>
-                <div id="itemGrid" class="space-y-1.5"></div>
+                <div id="itemGrid"></div>
             </div>
 
             <!-- Footer Export -->
@@ -114,14 +114,101 @@
 
     <script>
         const rawData = [
-            {chn: "狗", eng: "dog, puppy"}, {chn: "床", eng: "bed"}, {chn: "树", eng: "tree"}, {chn: "马", eng: "horse, pony"}, {chn: "太阳", eng: "sun, sunshine"}, {chn: "叉子", eng: "fork"}, {chn: "蛋糕", eng: "cake"}, {chn: "熊", eng: "bear"}, {chn: "门", eng: "door"}, {chn: "苹果", eng: "apple"},
-            {chn: "椅子", eng: "chair"}, {chn: "书", eng: "book"}, {chn: "鱼", eng: "fish"}, {chn: "葡萄", eng: "grapes"}, {chn: "剪刀", eng: "scissors"}, {chn: "手表", eng: "watch"}, {chn: "钥匙", eng: "key"}, {chn: "骨头", eng: "bone"}, {chn: "云", eng: "cloud"}, {chn: "拉链", eng: "zipper"},
-            {chn: "飞机", eng: "airplane, plane"}, {chn: "月亮", eng: "moon"}, {chn: "蝴蝶", eng: "butterfly"}, {chn: "手套", eng: "glove"}, {chn: "鼓", eng: "drum"}, {chn: "彩虹", eng: "rainbow"}, {chn: "树叶", eng: "leaf"}, {chn: "帽子", eng: "hat"}, {chn: "蜡烛", eng: "candle"}, {chn: "桥", eng: "bridge"},
-            {chn: "领带", eng: "tie"}, {chn: "小丑", eng: "clown, joker"}, {chn: "羽毛", eng: "feather"}, {chn: "篮子", eng: "basket"}, {chn: "熨斗", eng: "iron"}, {chn: "围巾", eng: "scarf"}, {chn: "笼子", eng: "cage, bird cage"}, {chn: "护士", eng: "nurse"}, {chn: "蜗牛", eng: "snail, slug"}, {chn: "箭", eng: "arrow"},
-            {chn: "灯泡", eng: "lightbulb, bulb"}, {chn: "鸟巢", eng: "nest"}, {chn: "风筝", eng: "kite"}, {chn: "奶嘴", eng: "pacifier"}, {chn: "皇冠", eng: "crown"}, {chn: "降落伞", eng: "parachute"}, {chn: "鸵鸟", eng: "ostrich"}, {chn: "锁", eng: "lock"}, {chn: "鲸", eng: "whale"}, {chn: "跷跷板", eng: "seesaw"},
-            {chn: "井", eng: "well"}, {chn: "手电", eng: "flashlight"}, {chn: "螺丝", eng: "screw"}, {chn: "孔雀", eng: "peacock"}, {chn: "锯", eng: "saw"}, {chn: "镊子", eng: "tweezers"}, {chn: "石榴", eng: "pomegranate"}, {chn: "假发", eng: "wig"}, {chn: "锚", eng: "anchor"}, {chn: "弹弓", eng: "slingshot"},
-            {chn: "插头", eng: "plug"}, {chn: "耙子", eng: "rake"}, {chn: "水罐", eng: "pitcher, jug"}, {chn: "漏斗", eng: "funnel"}, {chn: "水萝卜", eng: "radish, beet"}, {chn: "簸箕", eng: "dustpan"}, {chn: "鳗鱼", eng: "eel"}, {chn: "脚蹼", eng: "flippers, fins"}, {chn: "百叶窗", eng: "blind"}, {chn: "刨丝器", eng: "grater"},
-            {chn: "合页", eng: "hinge"}, {chn: "气压表", eng: "gauge, barometer"}, {chn: "顶针", eng: "thimble"}, {chn: "桅杆", eng: "mast"}, {chn: "水平仪", eng: "level"}, {chn: "研钵", eng: "mortar or pestle"}, {chn: "铁砧", eng: "anvil"}, {chn: "鼓风机", eng: "bellows"}, {chn: "辐条", eng: "spoke"}, {chn: "车轴", eng: "axle"}
+            // Row 1
+            {chn: "狗", eng: "dog, puppy"},
+            {chn: "床", eng: "bed"},
+            {chn: "树", eng: "tree"},
+            {chn: "马", eng: "horse, pony, stallion, mare"},
+            {chn: "太阳/日/阳光/日光", eng: "sun, sunshine, sunlight"},
+            {chn: "叉子", eng: "fork"},
+            {chn: "蛋糕", eng: "cake"},
+            {chn: "熊", eng: "bear"},
+            {chn: "门", eng: "door"},
+            {chn: "苹果", eng: "apple"},
+
+            // Row 2
+            {chn: "椅子", eng: "chair"},
+            {chn: "书", eng: "book"},
+            {chn: "鱼", eng: "fish"},
+            {chn: "葡萄", eng: "grapes"},
+            {chn: "剪刀/剪子", eng: "scissors"},
+            {chn: "手表", eng: "watch"},
+            {chn: "钥匙", eng: "key"},
+            {chn: "骨头", eng: "bone"},
+            {chn: "云/云彩/云朵", eng: "cloud"},
+            {chn: "拉链/拉锁", eng: "zipper"},
+
+            // Row 3
+            {chn: "飞机", eng: "airplane, plane, jet, jet plane, aeroplane (UK)"},
+            {chn: "月亮", eng: "moon"},
+            {chn: "蝴蝶", eng: "butterfly, monarch, viceroy"},
+            {chn: "手套", eng: "glove"},
+            {chn: "鼓", eng: "drum, drumset, snare drum"},
+            {chn: "彩虹", eng: "rainbow"},
+            {chn: "树叶/叶子", eng: "leaf"},
+            {chn: "帽子", eng: "hat"},
+            {chn: "蜡烛/烛光", eng: "candle, candlelight"},
+            {chn: "桥", eng: "bridge"},
+
+            // Row 4
+            {chn: "领带", eng: "tie, necktie"},
+            {chn: "小丑", eng: "clown, joker"},
+            {chn: "羽毛", eng: "feather"},
+            {chn: "篮子/筐", eng: "basket"},
+            {chn: "熨斗/电熨斗/烫斗", eng: "iron"},
+            {chn: "围巾/围脖", eng: "scarf, shawl, muffler"},
+            {chn: "笼子/鸟笼", eng: "cage, bird cage"},
+            {chn: "护士", eng: "nurse"},
+            {chn: "蜗牛/瓜牛", eng: "snail, slug"},
+            {chn: "箭/箭头", eng: "arrow"},
+
+            // Row 5
+            {chn: "灯泡/电灯泡", eng: "lightbulb, bulb, electric bulb"},
+            {chn: "鸟巢/巢/鸟窝", eng: "nest, bird nest"},
+            {chn: "风筝", eng: "kite"},
+            {chn: "奶嘴", eng: "pacifier, binky, dummy (UK)"},
+            {chn: "皇冠/王冠", eng: "crown"},
+            {chn: "降落伞", eng: "parachute"},
+            {chn: "鸵鸟", eng: "ostrich"},
+            {chn: "锁", eng: "lock, padlock, combination lock, combo lock, unlocked lock"},
+            {chn: "鲸/鲸鱼", eng: "whale"},
+            {chn: "跷跷板", eng: "seesaw, teeter-totter"},
+
+            // Row 6
+            {chn: "井/水井", eng: "well, wishing well, water well"},
+            {chn: "手电/手电筒", eng: "flashlight, torch (UK)"},
+            {chn: "螺丝/螺丝钉", eng: "screw"},
+            {chn: "孔雀", eng: "peacock"},
+            {chn: "锯/锯子", eng: "saw, hacksaw, handsaw"},
+            {chn: "镊子", eng: "tweezers"},
+            {chn: "石榴", eng: "pomegranate"},
+            {chn: "假发", eng: "wig"},
+            {chn: "锚/船锚", eng: "anchor"},
+            {chn: "弹弓", eng: "slingshot"},
+
+            // Row 7
+            {chn: "插头/插销", eng: "plug, plug-in"},
+            {chn: "耙子/钉耙", eng: "rake"},
+            {chn: "水罐/罐子", eng: "pitcher, jug, ewer"},
+            {chn: "漏斗", eng: "funnel"},
+            {chn: "水萝卜/红萝卜/樱桃萝卜", eng: "radish, beet"},
+            {chn: "簸箕/畚箕", eng: "dustpan, dusting pan"},
+            {chn: "鳗鱼/带鱼", eng: "eel"},
+            {chn: "脚蹼/蹼", eng: "flippers, fins"},
+            {chn: "百叶窗", eng: "blind"},
+            {chn: "刨丝器/擦子/擦丝器", eng: "grater, cheese grater"},
+
+            // Row 8
+            {chn: "合页/铰链", eng: "hinge, door hinge"},
+            {chn: "气压表/气压计/压力表/压力计", eng: "gauge, barometer, manometer, pressure gauge"},
+            {chn: "顶针", eng: "thimble"},
+            {chn: "桅杆/船桅", eng: "mast"},
+            {chn: "水平仪", eng: "level, leveler"},
+            {chn: "研钵/杵/舂", eng: "mortar or pestle"},
+            {chn: "铁砧", eng: "anvil"},
+            {chn: "鼓风机", eng: "bellows"},
+            {chn: "辐条/辐丝", eng: "spoke"},
+            {chn: "车轴/前桥", eng: "axle"}
         ];
 
         let items = rawData.map((d, index) => ({
@@ -275,22 +362,22 @@
                 tipEl.classList.add('hidden');
             }
 
-            // Render all items in one continuous snug grid (10 columns across)
+            // Snug 10-column layout with flexible height to show all word options
             let gridCols = document.createElement('div');
-            gridCols.className = "grid grid-cols-2 sm:grid-cols-5 md:grid-cols-10 gap-1.5 bg-slate-100 p-2 rounded-xl border border-slate-200";
+            gridCols.className = "grid grid-cols-2 sm:grid-cols-5 md:grid-cols-10 gap-1 bg-slate-100 p-1.5 rounded-xl border border-slate-200";
 
             items.forEach(item => {
                 const s = states[item.id];
                 let displayText = lang === 'CHN' ? item.chn : item.eng;
-                let cardClass = "border rounded p-1.5 flex flex-col justify-between transition select-none text-[11px] ";
+                let cardClass = "border rounded-lg p-1 flex flex-col justify-between transition select-none min-h-[58px] ";
                 let badgeHTML = "";
 
                 if (s.correct1st) {
                     cardClass += "bg-white border-slate-200 hover:border-slate-300 text-slate-800";
-                    badgeHTML = `<span class="font-bold text-emerald-600 bg-emerald-50 px-1 rounded text-[9px] self-start">✓</span>`;
+                    badgeHTML = `<span class="font-bold text-emerald-600 bg-emerald-50 px-0.5 rounded text-[9px] leading-none shrink-0">✓</span>`;
                 } else {
                     cardClass += "bg-rose-50 border-rose-300 text-rose-900";
-                    badgeHTML = `<span class="font-bold text-rose-600 bg-rose-100 px-1 rounded text-[9px] self-start">✕</span>`;
+                    badgeHTML = `<span class="font-bold text-rose-600 bg-rose-100 px-0.5 rounded text-[9px] leading-none shrink-0">✕</span>`;
                 }
 
                 let secondPassHTML = "";
@@ -313,11 +400,11 @@
                 }
                 card.innerHTML = `
                     <div>
-                        <div class="flex justify-between items-center mb-0.5">
+                        <div class="flex justify-between items-center mb-0.5 gap-0.5">
                             <span class="text-[9px] text-slate-400 font-mono">#${item.id}</span>
                             ${badgeHTML}
                         </div>
-                        <div class="font-bold leading-tight truncate" title="${displayText}">${displayText}</div>
+                        <div class="text-[10px] md:text-[11px] font-semibold leading-tight break-words">${displayText}</div>
                     </div>
                     ${secondPassHTML}
                 `;
