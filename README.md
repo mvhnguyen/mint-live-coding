@@ -85,3 +85,15 @@ The current implementation is self-contained within `index.html`. The item label
 ## Attribution
 
 MiNT Sprint 2.0 is a custom web-based protocol scoring interface. The supplied source file does not identify its author, repository, or the reference for the underlying naming test, so no authorship or test citation is asserted here. Add the appropriate project maintainer, licensing terms, and citation to the original Multilingual Naming Test (MiNT) materials before publishing if required by your study or reuse permissions.
+
+## References
+
+Gollan, T. H., Garcia, D. L., Stasenko, A., Murillo, M., Kim, C., Galasko, D., & Salmon, D. P. (2024). The MINT Sprint 2.0: A picture naming test for detection of naming impairments in Alzheimer's disease and in preclinical AD. *Alzheimer's & Dementia, 20*(1), 112–123. https://doi.org/10.1002/alz.13381
+
+Sheng, L., Lu, Y., & Gollan, T. H. (2014). Assessing language dominance in Mandarin–English bilinguals: Convergence and divergence between subjective and objective measures. *Bilingualism: Language and Cognition, 17*(2), 364–383. https://doi.org/10.1017/S1366728913000424
+
+### Test Materials
+
+Original MINT Sprint 2.0 materials: https://osf.io/7r9mq/
+
+**Note:** This repository contains a modified, web-based scoring interface for bilingual English–Mandarin administration of MINT Sprint 2.0. The original test and materials were developed by Gollan and colleagues. The Mandarin–English MINT research by Sheng et al. (2014) is cited as relevant background; it does not describe this specific web implementation.
